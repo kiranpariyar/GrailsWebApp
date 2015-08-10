@@ -25,14 +25,16 @@ class TweetStatisticsController {
     def list(){
 //        def doc = Tweet.list()
         def now = new Date()
-        def lastWeek = now - 100
+        def lastWeek = now - 7
         def doc1 = Tweet.findByDateBetween(lastWeek,now)
 
         def query = Tweet.where{ sentimentRank == 1}
-        def doc2 = query.find()
+        def doc2 = query.list()
+
+        def count2 = doc2.size()
 
         def doc3 = Tweet.find{ sentimentRank == 1}
-        [doc: doc1, doc2: doc2 , doc3:doc3]
+        [doc: doc1, doc2: doc2 , doc3:doc3, count2: count2]
     }
 
     def showtweet() {
