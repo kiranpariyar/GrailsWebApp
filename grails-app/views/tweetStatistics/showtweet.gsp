@@ -12,10 +12,13 @@
 </head>
 
 <body>
-Hello Kiran
+
 <g:each in="${doc}" var="tweet">
-    <p>${tweet.tweet}    :    ${tweet.date}</p>
+    <p>${tweet.tweet} : ${tweet.date}    ${tweet.sentimentRank}</p>
 </g:each>
+<p>Total Negative Tweet = ${negative}</p>
+
+
 
 </body>
 </html>

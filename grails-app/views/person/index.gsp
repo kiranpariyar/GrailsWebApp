@@ -12,7 +12,14 @@
 </head>
 
 <body>
-    ${person.name}
-    ${person.address}
+
+<g:form controller="person" action="save">
+    <label>Name: </label>
+    <g:textField name="name"/><br/>
+    <label>Address : </label>
+    <g:textField name="address"/><br/>
+    <g:actionSubmit value="Save"/>
+</g:form>
+
 </body>
 </html>

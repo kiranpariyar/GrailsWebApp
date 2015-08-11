@@ -3,23 +3,25 @@ package grailswebapp
 class PersonController {
 
     def index() {
-
+        render "Hello this is default action"
 //        def person = new Person(name: "kiran",address: "koteshwor")
 //        println person.name
 //        println person.address
-//        person.save(flash:true)
+//        person.save()
 
 //        def people = Person.list()
-//
-//        for(p in people){
-//            println p
-//        }
 
-        def p = Person.get(1)
-        p.delete()
-        p = Person.get(2)
-        p.delete()
+//        [person:person,people:people]
+    }
 
-        [person:p]
+    def save(){
+        def person = new Person(params)
+        person.save()
+        render(view: "success")
+    }
+
+    def list(){
+        def person = Person.list()
+        [person: person]
     }
 }
