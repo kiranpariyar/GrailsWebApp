@@ -5,11 +5,14 @@
   Time: 8:15 PM
 --%>
 <html>
-<head>
+    <link href="${resource(dir: 'css', file: 'test.css')}" type="text/css" rel="stylesheet"/>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    %{--src="${resource(dir: 'javascript', file: 'drawChart.js')}--}%
     <script type="text/javascript">
-        google.load("visualization", "1", {packages:["corechart"]});
+        google.load("visualization", "1", {packages:["corechart","line"]});
+//        google.load('visualization', '1.1', {packages: ['line']});
         google.setOnLoadCallback(drawPieChart);
+        google.setOnLoadCallback(drawCurveChart);
         google.setOnLoadCallback(drawLineChart);
         function drawPieChart() {
 
@@ -29,7 +32,7 @@
             chart.draw(data, options);
         }
 
-        function drawLineChart() {
+        function drawCurveChart() {
             var data = google.visualization.arrayToDataTable([
                 ['days', 'Positive', 'Neutral', 'Negative'],
                 ['day1',  ${map.get(1)[2]},  ${map.get(1)[1]},  ${map.get(1)[0]}],
@@ -43,7 +46,7 @@
             ]);
 
             var options = {
-                title: 'Satatistics in time line last week',
+                title: 'Satatistics in curve line last week',
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };
@@ -53,12 +56,47 @@
             chart.draw(data, options);
         }
 
+        function drawLineChart() {
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'Day');
+            data.addColumn('number', 'positive');
+            data.addColumn('number', 'negative');
+            data.addColumn('number', 'neutral');
+
+            data.addRows([
+                [1,  ${map.get(1)[2]},  ${map.get(1)[1]},  ${map.get(1)[0]}],
+                [2,  ${map.get(2)[2]},  ${map.get(2)[1]},  ${map.get(2)[0]}],
+                [3,  ${map.get(3)[2]},  ${map.get(3)[1]},  ${map.get(3)[0]}],
+                [4,  ${map.get(4)[2]},  ${map.get(4)[1]},  ${map.get(4)[0]}],
+                [5,  ${map.get(5)[2]},  ${map.get(5)[1]},  ${map.get(5)[0]}],
+                [6,  ${map.get(6)[2]},  ${map.get(6)[1]},  ${map.get(6)[0]}],
+                [7,  ${map.get(7)[2]},  ${map.get(7)[1]},  ${map.get(7)[0]}]
+            ]);
+
+            var options = {
+                chart: {
+                    title: 'Twitter Statistics in Line Chart',
+                    subtitle: 'in no of positive negative and neutral tweets',
+                    legend: { position: 'bottom' }
+                }
+            };
+
+            var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+            chart.draw(data, options);
+        }
+
+
+
     </script>
 </head>
 <body>
 <div id="piechart" style="width: 900px; height: 500px;"></div>
 
 <div id="curve_chart" style="width: 900px; height: 500px"></div>
+
+<div id="linechart_material" style="width: 900px; height: 500px"></div>
 
 </body>
 </html>

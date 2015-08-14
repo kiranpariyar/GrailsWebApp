@@ -92,5 +92,4 @@ class TweetStatisticsController {
         }
         [count:count,map:map]
     }
-
 }
