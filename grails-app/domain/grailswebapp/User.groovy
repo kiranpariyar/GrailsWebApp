@@ -1,8 +1,12 @@
 package grailswebapp
 
+import org.bson.types.ObjectId
+
 class User {
 
+    static mapWith = "mongo"
     // time stamps: automatically populated by GORM
+    ObjectId objectId
     Date dateCreated
     Date lastUpdated
 

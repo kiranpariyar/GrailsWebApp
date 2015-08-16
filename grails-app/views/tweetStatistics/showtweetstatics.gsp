@@ -5,11 +5,12 @@
   Time: 8:15 PM
 --%>
 <html>
+    <meta name="layout" content="main"/>
     <link href="${resource(dir: 'css', file: 'test.css')}" type="text/css" rel="stylesheet"/>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     %{--src="${resource(dir: 'javascript', file: 'drawChart.js')}--}%
     <script type="text/javascript">
-        google.load("visualization", "1", {packages:["corechart","line"]});
+        google.load("visualization", "1.1", {packages:["corechart","line"]});
 //        google.load('visualization', '1.1', {packages: ['line']});
         google.setOnLoadCallback(drawPieChart);
         google.setOnLoadCallback(drawCurveChart);
@@ -98,6 +99,19 @@
 
 <div id="linechart_material" style="width: 900px; height: 500px"></div>
 
+<div class="middle-box text-center loginscreen animated">
+    <div>
+        <div>
+
+            <g:form class="m-t" url="[controller:'user',action:'loginHandle']">
+                <div class="form-group">
+                    <input type="name" class="form-control" placeholder="brand" required="" value="${value}">
+                </div>
+                <g:submitButton class="btn btn-primary block full-width m-b" name="submitButton" value="Add Brand" />
+            </g:form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 

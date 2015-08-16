@@ -5,21 +5,7 @@ import com.gmongo.GMongo
 class TweetStatisticsController {
 
     def index() {
-
-        def mongo = new GMongo()
-        def db = mongo.getDB("tweetdatabase")
-//
-//        def howmanytweets = db.tweet.count()
-//        def count1 = db.tweet.find(sentimentRank: 1).count()
-//        def count2 = db.tweet.find(sentimentRank: 2).count()
-//        def count3 = db.tweet.find(sentimentRank: 3).count()
-
-        // output each document to screen
-//        doc.each {
-//            println it
-//        }
-        redirect(action: list())
-//        [howmanytweets:howmanytweets ,count1:count1,count2:count2,count3:count3,date1:date1,doc:doc ]
+        redirect(action: showtweetstatics())
     }
 
     def list(){
@@ -71,6 +57,7 @@ class TweetStatisticsController {
         def map = [:]
         def countforday = []
         def doc
+
         // calculation of data for line graph
         def week = [1,2,3,4,5,6,7]
         for( d in week ){
